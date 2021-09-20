@@ -19,7 +19,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'washington': 'washington.csv' }
 
 
-    
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -29,23 +29,23 @@ def get_filters():
         (str) month - name of the month to filter by, or "all" to apply no month filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
-   
+
     '''
     city = 'chicago'
     month = 'all'
     day = 'all'
     '''
-    
+
     city_list = list()
     for key in CITY_DATA:
         city_list.append(key.title())
-        
-    print('-'*40)    
+
+    print('-'*40)
     print('Hello! Let\'s explore some US bikeshare data!')
     print('Cities that are included in our data are: ' + color.BOLD + '{}, and {}\n'.format(", ".join(city_list[:-1]), city_list[-1]) + color.END)
     input("Please Press Enter to continue...")
     print('-'*40)
-    
+
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     print('Please input city name')
     while True:
@@ -55,9 +55,9 @@ def get_filters():
             continue
         else:
             break
-    
+
     print('-'*40)
-    
+
     # TO DO: get user input for month (all, january, february, ... , june)
     filter_month = input('Do you want to filter by Month [y/n]? ').lower()
     if filter_month == 'n':
@@ -71,9 +71,9 @@ def get_filters():
                 continue
             else:
                 break
-                
+
     print('-'*40)
-    
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     filter_day = input('Do you want to filter by Day Name [y/n]? ').lower()
     if filter_day == 'n':
@@ -87,9 +87,9 @@ def get_filters():
                 continue
             else:
                 break
-            
+
     print('-'*40)
-    
+
     return city, month, day
 
 def load_data(city, month, day):
@@ -103,9 +103,9 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    
+
     print('-'*40)
-        
+
     # load data file into a dataframe
     df = pd.read_csv(CITY_DATA[city])
 
@@ -116,7 +116,7 @@ def load_data(city, month, day):
     # extract month and day of week from Start Time to create new columns
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
-    
+
     # filter by month if applicable
     if month != 'all':
         # use the index of the months list to get the corresponding int
@@ -130,20 +130,20 @@ def load_data(city, month, day):
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day.title()]
-    
+
     return (df)
-        
-def data_head_print(df):    
-    
+
+def data_head_print(df):
+
     # print data head by 5 lines if requested
     see_data_head = input('Do you want to see the first 5 lines of the data?, Enter y to continue[y/n]: ').lower()
     row_count = 0
-        
+
     while see_data_head == 'y':
         row_count += 5
         print('\n {} \n'.format(df.head(row_count)))
         see_data_head = input('Do you want to see the next 5 lines of the data?, Enter y to continue[y/n]: ').lower()
-    
+
     print('-'*40)
 
 def time_stats(df):
@@ -155,16 +155,16 @@ def time_stats(df):
     # TO DO: display the most common month
     popular_month = df['month'].mode()[0]
     months = ["january","february","march","april","may","june","july","august","september","october","november","december"]
-    popular_month = months[popular_month - 1]    
+    popular_month = months[popular_month - 1]
     if df['month'].nunique() != 1:
         print('Most Popular Month:', popular_month.title())
     else:
         print('You chose spcific month:', popular_month.title())
-    
+
     # TO DO: display the most common day of week
     popular_day = df['day_of_week'].mode()[0]
     if df['day_of_week'].nunique() != 1:
-        print('Most Popular Month:', popular_day)    
+        print('Most Popular Month:', popular_day)
     else:
         print('You chose spcific day:', popular_day)
 
@@ -195,7 +195,7 @@ def station_stats(df):
     df["Start End Station"] = 'From ' + df['Start Station'] + ' to '+ df['End Station']
     Start_End_Station = df['Start End Station'].mode()[0]
     print('Most Popular Combination of Start and End Station:', Start_End_Station)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -209,7 +209,7 @@ def trip_duration_stats(df):
     # TO DO: display total travel time
     travel_time_sum = df['Trip Duration'].sum()
     print('Total Travel Time: {} Seconds or {} Minutes or {} Hours'.format(travel_time_sum, "%.2f"%(travel_time_sum/60),  "%.2f"%(travel_time_sum/3600)))
-    
+
     # TO DO: display mean travel time
     travel_time_mean = df['Trip Duration'].mean()
     print('Average Travel Time: {} Seconds or {} Minutes or {} Hours'.format(travel_time_mean, "%.2f"%(travel_time_mean/60), "%.2f"%(travel_time_mean/3600)))
@@ -226,7 +226,7 @@ def user_stats(df):
 
     # TO DO: Display counts of user types
     df['User Type'].value_counts(),'\n'
-    
+
     # TO DO: Display counts of gender
     if 'Gender' in df.columns:
         gender_count = df['Gender'].value_counts()
@@ -249,13 +249,10 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-def input_block(city, month, day):
-    
-    return (city, month, day)
 
 def main():
     while True:
-        
+
         # Input Block Check
         while True:
             city, month, day = get_filters()
@@ -267,15 +264,14 @@ def main():
                 continue
             else:
                 break
-                
-        # program end if dataframe is empty 
+
+        # program end if dataframe is empty
         df = load_data(city, month, day)
-        
         if df.empty == True:
             print('Filtered data empty, please start over the program and try another filter parameter')
-            break        
-        
-        data_head_print(df)       
+            break
+
+        data_head_print(df)
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
