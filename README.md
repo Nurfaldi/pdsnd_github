@@ -13,9 +13,9 @@ This program will analyze bike sharing data from three major US city, Washington
 bikeshare.py
 
 Raw data from <a href="https://www.motivateco.com/">Motivate</a>. Data wrangling has been performed before it was used.
-chicago.csv https://www.divvybikes.com/system-data
-new_york_city.csv https://www.divvybikes.com/system-data
-washington.csv https://www.citibikenyc.com/system-data
+<br>chicago.csv https://www.divvybikes.com/system-data
+<br>new_york_city.csv https://www.divvybikes.com/system-data
+<br>washington.csv https://www.citibikenyc.com/system-data
 
 ### Credits
 These web pages and blogpost was consulted during the project development
