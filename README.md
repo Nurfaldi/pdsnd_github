@@ -10,7 +10,12 @@ Bikeshare Data Analysis Python Program of Washington, New York, and Chicago
 This program will analyze bike sharing data from three major US city, Washington, New York, and Chicago.
 
 ### Files used
-Include the files used
+bikeshare.py
+
+Raw data from <a href="https://www.motivateco.com/">Motivate</a>. Data wrangling has been performed before it was used.
+chicago.csv https://www.divvybikes.com/system-data
+new_york_city.csv https://www.divvybikes.com/system-data
+washington.csv https://www.citibikenyc.com/system-data
 
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
