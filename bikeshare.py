@@ -138,7 +138,7 @@ def data_head_print(df):
     # print data head by 5 lines if requested
     see_data_head = input('Do you want to see the first 5 lines of the data?, Enter y to continue[y/n]: ').lower()
     row_count = 0
-
+    # print with the next 5 lines of data head if requested
     while see_data_head == 'y':
         row_count += 5
         print('\n {} \n'.format(df.head(row_count)))
@@ -152,7 +152,7 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # TO DO: display the most common month
+    # TO DO: display the most common month, if all months is choosen, print the chosen month
     popular_month = df['month'].mode()[0]
     months = ["january","february","march","april","may","june","july","august","september","october","november","december"]
     popular_month = months[popular_month - 1]
@@ -161,7 +161,7 @@ def time_stats(df):
     else:
         print('You chose spcific month:', popular_month.title())
 
-    # TO DO: display the most common day of week
+    # TO DO: display the most common day of week, if all months is choosen, print the chosen week
     popular_day = df['day_of_week'].mode()[0]
     if df['day_of_week'].nunique() != 1:
         print('Most Popular Month:', popular_day)
